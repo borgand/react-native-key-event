@@ -33,6 +33,10 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
   }
 
   public void onKeyDownEvent(int keyCode, KeyEvent event) {
+    if (!mReactContext.hasActiveCatalystInstance()) {
+            return;
+    }
+
     if (mJSModule == null) {
         mJSModule = mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class);
     }
@@ -49,6 +53,10 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
   };
 
   public void onKeyUpEvent(int keyCode, KeyEvent event) {
+      if (!mReactContext.hasActiveCatalystInstance()) {
+            return;
+      }
+
       if (mJSModule == null) {
           mJSModule = mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class);
       }
